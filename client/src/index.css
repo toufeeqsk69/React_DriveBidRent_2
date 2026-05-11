@@ -1,0 +1,56 @@
+/* ==========================================
+   GLOBAL FORM ELEMENT NORMALIZATION
+   Forces all form elements to have light, 
+   readable styling regardless of OS/browser 
+   dark mode preferences.
+   ========================================== */
+
+/* Force light color scheme globally */
+:root {
+  color-scheme: light;
+}
+
+/* Ensure all form elements have visible text and light backgrounds */
+input,
+select,
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="search"],
+input[type="url"],
+input[type="date"] {
+  background-color: #ffffff;
+  color: #111827;
+  -webkit-text-fill-color: #111827;
+  border-color: #d1d5db;
+}
+
+/* Placeholder text — visible medium gray */
+input::placeholder,
+select::placeholder,
+textarea::placeholder {
+  color: #6b7280;
+  -webkit-text-fill-color: #6b7280;
+  opacity: 1;
+}
+
+/* Select dropdown text */
+select option {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+/* Autofill override — prevent browser dark autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+select:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: #111827 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  background-color: #ffffff !important;
+}

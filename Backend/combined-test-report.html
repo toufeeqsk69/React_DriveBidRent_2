@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveBidRent - Combined Test Report</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border-bottom: 1px solid #1e293b;
+      padding: 40px 48px 32px;
+    }
+    .header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #f8fafc;
+    }
+    .header h1 span { color: #f97316; }
+    .header .meta {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #64748b;
+      font-weight: 500;
+    }
+    .summary-bar {
+      display: flex;
+      gap: 16px;
+      padding: 24px 48px;
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+    }
+    .summary-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 14px;
+      flex: 1;
+      justify-content: center;
+    }
+    .pill-pass { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
+    .pill-fail { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+    .status-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+    .icon-pass { background: #34d399; }
+    .icon-fail { background: #f87171; }
+    .tabs {
+      display: flex;
+      gap: 0;
+      padding: 0 48px;
+      background: #1e293b;
+      border-bottom: 1px solid #334155;
+    }
+    .tab {
+      padding: 14px 28px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .tab:hover { color: #94a3b8; }
+    .tab.active { color: #f97316; border-bottom-color: #f97316; }
+    .panel { display: none; padding: 32px 48px; }
+    .panel.active { display: block; }
+    .console-output {
+      background: #0c0e14;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 28px 32px;
+      font-family: Consolas, 'Courier New', monospace;
+      font-size: 12.5px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #94a3b8;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+    .console-output::-webkit-scrollbar { width: 6px; }
+    .console-output::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #475569;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #1e293b;
+    }
+    .footer {
+      text-align: center;
+      padding: 32px;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .header, .summary-bar, .tabs, .panel { padding-left: 20px; padding-right: 20px; }
+      .summary-bar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DriveBidRent - <span>Test Report</span></h1>
+    <p class="meta">Generated on 21/4/2026, 12:12:49 am | Backend (Jest) + Frontend (Vitest)</p>
+  </div>
+
+  <div class="summary-bar">
+    <div class="summary-pill pill-pass">
+      <span class="status-icon icon-pass"></span>
+      Backend Tests - ALL PASSED
+    </div>
+    <div class="summary-pill pill-pass">
+      <span class="status-icon icon-pass"></span>
+      Frontend Tests - ALL PASSED
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-panel="backend">Backend (Jest)</div>
+    <div class="tab" data-panel="frontend">Frontend (Vitest)</div>
+
+  </div>
+
+  <div id="panel-backend" class="panel active">
+    <div class="section-label">Console Output - Backend Test Suites</div>
+    <div class="console-output">(node:33204) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS tests/auth.test.js (5.008 s)
+PASS tests/roleMiddlewares.test.js
+PASS tests/auth.controller.extensive.test.js
+PASS tests/admin.controllers.test.js
+PASS tests/auctions.core.test.js
+PASS tests/chat.handlers.test.js
+PASS tests/auth.middleware.test.js
+PASS tests/errorHandler.middleware.test.js
+PASS tests/chat.controller.test.js
+PASS tests/security.middleware.test.js
+PASS tests/home.controller.test.js
+PASS tests/checkBlocked.middleware.test.js
+PASS tests/generateToken.test.js
+
+Test Suites: 13 passed, 13 total
+Tests:       149 passed, 149 total
+Snapshots:   0 total
+Time:        12.518 s</div>
+  </div>
+
+  <div id="panel-frontend" class="panel">
+    <div class="section-label">Console Output - Frontend Vitest Suites</div>
+    <div class="console-output"> RUN  v4.1.4 C:/Users/jeeva/OneDrive/Desktop/github/WBD DriveBidRent/DriveBidRent/React_DriveBidRent_2/client
+
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; should return the initial state 32ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; fetchWishlist.pending should set loading true 8ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; fetchWishlist.fulfilled should populate auctions and rentals 6ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; fetchWishlist.rejected should set error 4ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; addWishlistItem.fulfilled should add an auction item 13ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; addWishlistItem.fulfilled should add a rental item 3ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; addWishlistItem.fulfilled should not duplicate existing items 3ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; removeWishlistItem.fulfilled should remove an auction item 6ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; removeWishlistItem.fulfilled should remove a rental item 6ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; addWishlistItem.rejected should set error 2ms
+ ✓ src/tests/wishlistSlice.test.js &gt; wishlistSlice &gt; removeWishlistItem.rejected should set error 2ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; should return the initial state 21ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; clearError should nullify the error field 4ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; clearSuccess should nullify the success field 2ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; clearRedirect should nullify the redirect field 2ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; setUser should populate user and derived fields 3ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; setUser(null) should mark unauthenticated 2ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; clearAuth should reset all auth state and clear localStorage 7ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; cancelSignupOtp should clear OTP UI flags 1ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; loginUser.pending should set loading true and clear error 3ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; loginUser.fulfilled should authenticate the user 3ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; loginUser.rejected should set error and clear auth 1ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; signupUser.fulfilled with OTP should set OTP flags 1ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; signupUser.fulfilled without OTP should set redirect 1ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; logoutUser.fulfilled should clear all auth state 1ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; googleLogin.fulfilled should authenticate the user 1ms
+ ✓ src/tests/authSlice.test.js &gt; authSlice &gt; googleLogin.rejected should set error 1ms
+ ✓ src/tests/ProtectedRoute.test.jsx &gt; ProtectedRoute &gt; renders children when user is authenticated 168ms
+ ✓ src/tests/ProtectedRoute.test.jsx &gt; ProtectedRoute &gt; redirects to /login when user is NOT authenticated 27ms
+ ✓ src/tests/ProtectedRoute.test.jsx &gt; ProtectedRoute &gt; redirects when authenticated but wrong userType 14ms
+ ✓ src/tests/ProtectedRoute.test.jsx &gt; ProtectedRoute &gt; renders children when userType matches requiredUserType 11ms
+ ✓ src/tests/ProtectedRoute.test.jsx &gt; PublicRoute &gt; renders children when user is NOT authenticated 12ms
+ ✓ src/tests/ProtectedRoute.test.jsx &gt; PublicRoute &gt; redirects when user IS authenticated 11ms
+
+ Test Files  3 passed (3)
+      Tests  33 passed (33)
+   Start at  00:12:40
+   Duration  8.40s (transform 987ms, setup 2.64s, import 4.51s, tests 422ms, environment 14.89s)
+
+
+stderr | src/tests/ProtectedRoute.test.jsx &gt; ProtectedRoute &gt; renders children when user is authenticated
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.</div>
+  </div>
+
+
+
+  <div class="footer">
+    DriveBidRent 2026 | Combined Test Report
+  </div>
+
+  <script>
+    // Tab switching via event delegation (no inline handlers)
+    document.querySelector('.tabs').addEventListener('click', function(e) {
+      var tab = e.target.closest('.tab');
+      if (!tab) return;
+      var panelName = tab.getAttribute('data-panel');
+      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      var panel = document.getElementById('panel-' + panelName);
+      if (panel) panel.classList.add('active');
+    });
+
+  </script>
+</body>
+</html>

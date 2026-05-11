@@ -1,0 +1,63 @@
+/* ==========================================
+   MECHANIC DASHBOARD STYLES — Clean & Premium
+   ========================================== */
+
+:root {
+  --mechanic-blue: #3b82f6;
+  --mechanic-blue-dark: #2563eb;
+  --mechanic-emerald: #10b981;
+  --mechanic-amber: #f59e0b;
+  --mechanic-red: #ef4444;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+}
+
+/* ── LAYOUT BASE — Clean, no pattern ── */
+.mechanic-layout {
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 500;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Remove all ::before and ::after patterns */
+.mechanic-layout::before,
+.mechanic-layout::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out backwards;
+}
+.animate-fade-in-up:nth-child(1) { animation-delay: 0s; }
+.animate-fade-in-up:nth-child(2) { animation-delay: 0.08s; }
+.animate-fade-in-up:nth-child(3) { animation-delay: 0.16s; }
+.animate-fade-in-up:nth-child(4) { animation-delay: 0.24s; }
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+  .mechanic-layout {
+    font-size: 14px;
+  }
+}

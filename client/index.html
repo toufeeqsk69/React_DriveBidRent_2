@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/css/photos/Logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DriveBidRent - Buy, Bid, Rent Vehicles Seamlessly</title>
+
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind + Montserrat + Custom Orange + Smooth Scroll -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              montserrat: ["Montserrat", "sans-serif"],
+            },
+            colors: {
+              orange: {
+                500: "#ff6b00",
+                600: "#e65c00",
+                700: "#cc5200",
+                800: "#b34700",
+                900: "#993d00",
+              },
+              primary: {
+                500: "#ff6b00",
+                600: "#e65c00",
+                700: "#cc5200",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Apply Montserrat globally */
+      html {
+        font-family: "Montserrat", system-ui, sans-serif;
+        scroll-behavior: smooth; /* Smooth scrolling enabled */
+      }
+
+      body {
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        background-color: #f9fafb;
+      }
+
+      /* Optional: Use primary color easily */
+      .text-primary { color: #ff6b00; }
+      .bg-primary { background-color: #ff6b00; }
+      .hover\:bg-primary:hover { background-color: #e65c00; }
+    </style>
+  </head>
+
+  <body class="bg-gray-50 text-gray-900 min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

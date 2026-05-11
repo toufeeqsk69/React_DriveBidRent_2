@@ -1,0 +1,278 @@
+<html><head><meta charset="utf-8"/><title>DriveBidRent — Backend Test Report</title><style type="text/css">:root {
+  --text-primary: #eee;
+  --text-secondary: #aaa;
+  --success: #2ecc71;
+  --success-bright: #1e3d2a;
+  --danger: #e74c3c;
+  --danger-bright: #3d1e1e;
+  --warning: #f39c12;
+  --warning-bright: #3d2c1e;
+  --panel: #1f1f1f;
+  --border: #444;
+  --disabled: #666;
+  background-color: #121212;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+}
+body {
+  padding: 2rem 1rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+#metadata-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.additional-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/** SUMMARY */
+#summary {
+  color: var(--text-primary);
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 0.5rem;
+  background: var(--panel);
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: var(--success);
+  border-left: 0.4rem solid var(--success);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: var(--danger);
+  border-left: 0.4rem solid var(--danger);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-pending {
+  color: var(--warning);
+  border-left: 0.4rem solid var(--warning);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-empty {
+  color: var(--disabled);
+  border-left: 0.4rem solid var(--disabled);
+  margin-bottom: 0.15rem;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: var(--success-bright);
+  color: var(--success);
+}
+.test-result.failed {
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.test-result.pending {
+  background-color: var(--warning-bright);
+  color: var(--warning);
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--danger);
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 1rem;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: var(--panel);
+  color: var(--text-secondary);
+  border: 0.15rem solid;
+  border-color: var(--panel);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  border-color: var(--border);
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 1rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+}
+.suite-info .suite-time.warn {
+  background-color: var(--danger);
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 1rem;
+  transform: rotate(180deg) translateY(0.15rem);
+}
+.suite-container[open] .suite-info:before {
+  transform: rotate(0deg) translateY(0.15rem);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--panel);
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><main class="jesthtml-content"><header><h1 id="title">DriveBidRent — Backend Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 20/04/2026 23:42:52</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (13)</div><div class="summary-passed ">13 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (149)</div><div class="summary-passed ">149 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\auth.test.js</div><div class="suite-time">2.265s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Auth API Core Functions</div><div class="test-title">should not register user without required fields</div><div class="test-status">passed</div><div class="test-duration">0.095s</div></div></div></div></details><details id="suite-2" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\auth.controller.extensive.test.js</div><div class="suite-time">0.159s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">rejects missing required fields</div><div class="test-status">passed</div><div class="test-duration">0.006s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">rejects invalid userType</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">rejects invalid phone</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">rejects missing dob</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">rejects underage users</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">rejects short password</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">rejects when terms are not accepted</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">returns 409 when user already exists</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">creates OTP flow when otp verification is enabled</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">returns 500 when OTP email send fails</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">creates user directly when OTP is disabled</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">returns mechanic review message for mechanic signup</div><div class="test-status">passed</div><div class="test-duration">0.006s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">returns validation message from caught ValidationError</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">returns 409 for duplicate key catch errors</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; signup</div><div class="test-title">returns 500 for unexpected signup errors</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; login</div><div class="test-title">returns 401 when user is not found</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; login</div><div class="test-title">returns 401 when password compare fails</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; login</div><div class="test-title">returns 403 for blocked user</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; login</div><div class="test-title">logs in successfully in non-production and sets strict cookie</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; login</div><div class="test-title">logs in successfully in production and sets secure cookie</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; login</div><div class="test-title">uses fallback redirect for unknown userType</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; login</div><div class="test-title">returns 500 when login throws</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; logout</div><div class="test-title">clears cookie in non-production mode</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; logout</div><div class="test-title">clears cookie in production mode with secure settings</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; googleLogin</div><div class="test-title">returns 400 when credential is missing</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; googleLogin</div><div class="test-title">returns 400 when email is missing in google payload</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; googleLogin</div><div class="test-title">returns 401 when account does not exist for google email</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; googleLogin</div><div class="test-title">updates googleId for existing user without googleId</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; googleLogin</div><div class="test-title">logs in existing google user without modifying googleId</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; googleLogin</div><div class="test-title">returns 401 for expired or invalid google token error</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; googleLogin</div><div class="test-title">returns 500 for other google login errors</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; verifySignupOtp</div><div class="test-title">returns 400 when email or otp is missing</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; verifySignupOtp</div><div class="test-title">returns 404 when otp session is missing</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; verifySignupOtp</div><div class="test-title">returns 400 when otp code is invalid</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; verifySignupOtp</div><div class="test-title">creates user and returns success for valid OTP (normal user)</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; verifySignupOtp</div><div class="test-title">returns mechanic-specific message for mechanic OTP verify</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auth.controller extensive unit tests &gt; verifySignupOtp</div><div class="test-title">returns 500 when verifySignupOtp throws</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details><details id="suite-3" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\roleMiddlewares.test.js</div><div class="suite-time">0.162s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">admin middleware</div><div class="test-title">returns 401 when no token is provided</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">admin middleware</div><div class="test-title">accepts valid cookie token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">admin middleware</div><div class="test-title">accepts valid bearer token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">admin middleware</div><div class="test-title">returns 401 when decoded token type mismatches</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">admin middleware</div><div class="test-title">returns 401 when email mismatches</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">admin middleware</div><div class="test-title">returns 401 when user is not found</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">admin middleware</div><div class="test-title">returns 403 when user is blocked</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">admin middleware</div><div class="test-title">returns 401 when jwt verify throws</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer middleware</div><div class="test-title">returns 401 when no token is provided</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer middleware</div><div class="test-title">accepts valid cookie token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer middleware</div><div class="test-title">accepts valid bearer token and calls next</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer middleware</div><div class="test-title">returns 401 when decoded token type mismatches</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer middleware</div><div class="test-title">returns 401 when email mismatches</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer middleware</div><div class="test-title">returns 401 when user is not found</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer middleware</div><div class="test-title">returns 403 when user is blocked</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer middleware</div><div class="test-title">returns 401 when jwt verify throws</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">seller middleware</div><div class="test-title">returns 401 when no token is provided</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">seller middleware</div><div class="test-title">accepts valid cookie token and calls next</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">seller middleware</div><div class="test-title">accepts valid bearer token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">seller middleware</div><div class="test-title">returns 401 when decoded token type mismatches</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">seller middleware</div><div class="test-title">returns 401 when email mismatches</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">seller middleware</div><div class="test-title">returns 401 when user is not found</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">seller middleware</div><div class="test-title">returns 403 when user is blocked</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">seller middleware</div><div class="test-title">returns 401 when jwt verify throws</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">mechanic middleware</div><div class="test-title">returns 401 when no token is provided</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">mechanic middleware</div><div class="test-title">accepts valid cookie token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">mechanic middleware</div><div class="test-title">accepts valid bearer token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">mechanic middleware</div><div class="test-title">returns 401 when decoded token type mismatches</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">mechanic middleware</div><div class="test-title">returns 401 when email mismatches</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">mechanic middleware</div><div class="test-title">returns 401 when user is not found</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">mechanic middleware</div><div class="test-title">returns 403 when user is blocked</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">mechanic middleware</div><div class="test-title">returns 401 when jwt verify throws</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">superadmin middleware</div><div class="test-title">returns 401 when no token is provided</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">superadmin middleware</div><div class="test-title">accepts valid cookie token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">superadmin middleware</div><div class="test-title">accepts valid bearer token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">superadmin middleware</div><div class="test-title">returns 401 when decoded token type mismatches</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">superadmin middleware</div><div class="test-title">returns 401 when email mismatches</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">superadmin middleware</div><div class="test-title">returns 401 when user is not found</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">superadmin middleware</div><div class="test-title">returns 403 when user is blocked</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">superadmin middleware</div><div class="test-title">returns 401 when jwt verify throws</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auction_manager middleware</div><div class="test-title">returns 401 when no token is provided</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auction_manager middleware</div><div class="test-title">accepts valid cookie token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auction_manager middleware</div><div class="test-title">accepts valid bearer token and calls next</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auction_manager middleware</div><div class="test-title">returns 401 when decoded token type mismatches</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auction_manager middleware</div><div class="test-title">returns 401 when email mismatches</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auction_manager middleware</div><div class="test-title">returns 401 when user is not found</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auction_manager middleware</div><div class="test-title">returns 403 when user is blocked</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">auction_manager middleware</div><div class="test-title">returns 401 when jwt verify throws</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div></div></details><details id="suite-4" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\auctions.core.test.js</div><div class="suite-time">0.143s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; getAuctions</div><div class="test-title">returns cached data when redis has value</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; getAuctions</div><div class="test-title">fetches auctions and current bids when not cached</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; getAuctions</div><div class="test-title">applies search and price filters in query</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; getAuctions</div><div class="test-title">returns 500 on unexpected errors</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; getSingleAuction</div><div class="test-title">returns 400 when id is missing</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; getSingleAuction</div><div class="test-title">returns 404 when auction not found</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; getSingleAuction</div><div class="test-title">returns auction details with bidder ownership false</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; placeBid</div><div class="test-title">rejects when required fields are missing</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; placeBid</div><div class="test-title">rejects invalid bid amount</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; placeBid</div><div class="test-title">returns 404 when auction does not exist</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; placeBid</div><div class="test-title">rejects bid when auction is inactive</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; placeBid</div><div class="test-title">rejects when same buyer already has current bid</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; placeBid</div><div class="test-title">rejects bid below min increment from current bid</div><div class="test-status">passed</div><div class="test-duration">0.024s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">buyer auctions core features &gt; placeBid</div><div class="test-title">places a valid bid successfully</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div></div></details><details id="suite-5" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\chat.handlers.test.js</div><div class="suite-time">0.115s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">getChatById returns 404 when chat does not exist</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">getChatById returns 403 when requester is not a participant</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">getChatById returns chat payload for allowed user</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">sendMessage returns 400 when content is missing</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">sendMessage returns 404 when chat is not found</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">sendMessage returns 403 for non participant</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">sendMessage returns 403 when chat is expired</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">sendMessage creates message and updates chat metadata</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">markMessagesRead returns 404 when chat does not exist</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">markMessagesRead returns 403 when user has no access</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">markMessagesRead updates unread messages for participant</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">deleteChat returns success when already deleted (race condition)</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">deleteChat returns 403 for non participant</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat.controller route handlers</div><div class="test-title">deleteChat removes messages and chat for authorized user</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details><details id="suite-6" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\errorHandler.middleware.test.js</div><div class="suite-time">0.13s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">errorHandler middleware helpers</div><div class="test-title">creates common errors with status and operational flag</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">errorHandler middleware helpers</div><div class="test-title">notFoundHandler forwards a route-not-found error</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">errorHandler middleware helpers</div><div class="test-title">maps duplicate key errors to 409</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">errorHandler middleware helpers</div><div class="test-title">maps JWT errors to 401</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">errorHandler middleware helpers</div><div class="test-title">passes through when headers are already sent</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">errorHandler middleware helpers</div><div class="test-title">asyncHandler forwards async rejections</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div></div></details><details id="suite-7" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\chat.controller.test.js</div><div class="suite-time">0.101s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat controller utilities</div><div class="test-title">createChatForRental returns null when rental payload is invalid</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat controller utilities</div><div class="test-title">createChatForRental returns existing chat if found</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat controller utilities</div><div class="test-title">createChatForRental creates a chat when none exists</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat controller utilities</div><div class="test-title">createChatForAuction creates a chat with winner and seller</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">chat controller utilities</div><div class="test-title">expireInspectionChat updates chat expiry and returns update result</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details><details id="suite-8" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\admin.controllers.test.js</div><div class="suite-time">0.105s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">selected admin controllers</div><div class="test-title">getAdminDashboard returns summary payload on success</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">selected admin controllers</div><div class="test-title">getAdminDashboard returns 500 on error</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">selected admin controllers</div><div class="test-title">getAnalytics returns success payload</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">selected admin controllers</div><div class="test-title">getAnalytics returns 500 on failure</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div></div></details><details id="suite-9" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\auth.middleware.test.js</div><div class="suite-time">0.094s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">isAdminLoggedin middleware</div><div class="test-title">returns 401 when token is missing</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">isAdminLoggedin middleware</div><div class="test-title">returns 401 for invalid admin token payload</div><div class="test-status">passed</div><div class="test-duration">0.002s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">isAdminLoggedin middleware</div><div class="test-title">attaches user and calls next for valid admin token</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">isAdminLoggedin middleware</div><div class="test-title">returns 401 when verify throws</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details><details id="suite-10" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\home.controller.test.js</div><div class="suite-time">0.101s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">homeController.getHomeData</div><div class="test-title">returns top rentals and auctions</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">homeController.getHomeData</div><div class="test-title">returns 500 when rental query fails</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details><details id="suite-11" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\security.middleware.test.js</div><div class="suite-time">0.101s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">security.middleware</div><div class="test-title">builds helmet config with expected CSP directives</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">security.middleware</div><div class="test-title">builds rate limiter with expected defaults</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">security.middleware</div><div class="test-title">allows requests without origin (server-to-server)</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">security.middleware</div><div class="test-title">allows whitelisted localhost origin</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">security.middleware</div><div class="test-title">allows CLIENT_URL when set in env</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">security.middleware</div><div class="test-title">rejects non-whitelisted origin</div><div class="test-status">passed</div><div class="test-duration"> </div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">security.middleware</div><div class="test-title">skip function skips notifications route</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">security.middleware</div><div class="test-title">skip function skips buyer api route</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">security.middleware</div><div class="test-title">skip function does not skip unrelated route</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details><details id="suite-12" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\checkBlocked.middleware.test.js</div><div class="suite-time">0.093s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">checkBlocked middleware</div><div class="test-title">blocks users flagged as blocked</div><div class="test-status">passed</div><div class="test-duration">0.004s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">checkBlocked middleware</div><div class="test-title">allows non-blocked users</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">checkBlocked middleware</div><div class="test-title">allows requests without user object</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details><details id="suite-13" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\jeeva\OneDrive\Desktop\github\WBD DriveBidRent\DriveBidRent\React_DriveBidRent_2\Backend\tests\generateToken.test.js</div><div class="suite-time">0.086s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">generateToken utility</div><div class="test-title">uses JWT_SECRET when present</div><div class="test-status">passed</div><div class="test-duration">0.003s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">generateToken utility</div><div class="test-title">falls back to dev secret when JWT_SECRET is missing</div><div class="test-status">passed</div><div class="test-duration">0.001s</div></div></div></div></details></main></body></html>
